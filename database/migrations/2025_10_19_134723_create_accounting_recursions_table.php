@@ -1,0 +1,55 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('accounting_recursions', function (Blueprint $table) {
+            $table->id();
+                $table->string('name', 255);
+
+
+            $table->foreignId('ledger_id')
+                  ->constrained('all_account_ledger__d_b_s')
+                  ->cascadeOnUpdate()
+                  ->restrictOnDelete();
+
+
+            $table->enum('post_type', ['debit', 'credit']);
+
+
+            $table->tinyInteger('recursion')
+                  ->default(1)
+                  ->comment('1 = monthly, 2 = weekly');
+
+   
+            $table->unsignedInteger('recursion_number')
+                  ->default(0)
+                  ->comment('0 = disabled; >0 = number of recurrences');
+
+            $table->decimal('amount', 15, 2);
+            $table->text('note')->nullable();
+
+         
+            $table->date('start_date')->nullable();
+            $table->timestamp('last_run_at')->nullable();
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('accounting_recursions');
+    }
+};

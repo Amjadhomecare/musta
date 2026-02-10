@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('bulk_jv_models', function (Blueprint $table) {
+            $table->id();
+            $table->date('date')->nullable();
+            $table->string('voucher_type')->nullable();
+            $table->string('ref')->nullable();
+            $table->string('account')->nullable();
+            $table->string('note')->nullable();
+            $table->string('post_type')->nullable();
+            $table->integer('amount');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('bulk_jv_models');
+    }
+};
