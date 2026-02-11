@@ -374,7 +374,7 @@ public function tableAttachment($name, Request $request)
                                         
 
                 $contractActions = "<a href='" . url("/get/full/categoryone-contract/{$row->contract_ref}") . "' target='_blank' class='dropdown-item'>Contract</a>";
-                $transferLetter = "<a href='" . url("/transfer/letter-p1/{$row->contract_ref}") . "' target='_blank' class='dropdown-item'>Al Mayar Agreement letter</a>";
+                $transferLetter = "<a href='" . url("/transfer/letter-p1/{$row->contract_ref}") . "' target='_blank' class='dropdown-item'>Demo Agreement letter</a>";
                 $ministryReturnLetter = "<a href='" . url("/ministry-return/{$row->id}") . "' target='_blank' class='dropdown-item'>Ministry return Letter</a>";
                 $signButton = $row->signature === 'No signature'
                     ? "<a href='" . url(env('sign_contract_p1') . "/{$row->id}") . "' target='_blank' class='dropdown-item'><i class='fa fa-signature'></i> Sign</a>"
